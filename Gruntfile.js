@@ -28,13 +28,21 @@ module.exports = function(grunt) {
     },
 
     uglify: {
+       my_target: {
+      files: {
+        'public/dest/output.min.js': ['public/dest/built.js']
+      }
+    }
 
     },
 
     eslint: {
-      target: [
+      
         // Add list of files to lint here
-      ]
+
+      target: ['public/dest/*.js']
+    
+      
     },
 
     cssmin: {
@@ -85,6 +93,10 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', ['concat'
+  ]);
+  grunt.registerTask('build', ['uglify'
+  ]);
+  grunt.registerTask('build', ['eslint'
   ]);
 
   grunt.registerTask('upload', function(n) {
